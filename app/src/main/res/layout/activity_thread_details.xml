@@ -5,6 +5,11 @@
     tools:context=".activity.ThreadDetailsActivity"
     android:orientation="vertical">
 
+    <Spinner
+        android:id="@+id/threadChangeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+
     <TextView
         android:id="@+id/threadNameTextView"
         android:layout_width="match_parent"
