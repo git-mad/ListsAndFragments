@@ -1,11 +1,10 @@
 package org.gitmad.beginners.sessionsix.activity;
 
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import org.gitmad.beginners.sessionsix.R;
-import org.gitmad.beginners.sessionsix.fragment.ThreadDetailsFragment;
 
 public class ThreadDetailsActivity extends AppCompatActivity {
 
@@ -16,22 +15,19 @@ public class ThreadDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_details);
 
-        if (isNewOrientationLandscape()) {
-            finish();
-
-        } else if (savedInstanceState == null) {
-
-            int threadIndex = getIntent().getIntExtra(KEY_THREAD_INDEX, -1);
-
-            ThreadDetailsFragment detailsFragment = ThreadDetailsFragment.newInstance(threadIndex);
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.detailsFragmentFrame, detailsFragment)
-                    .commit();
-        }
+        setThreadText();
     }
 
-    private boolean isNewOrientationLandscape() {
-        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    private void setThreadText() {
+        int threadIndex = getIntent().getIntExtra(KEY_THREAD_INDEX, -1);
+
+        String threadTitle = getResources().getStringArray(R.array.thread_names)[threadIndex];
+        String threadDescription = getResources().getStringArray(R.array.thread_descriptions)[threadIndex];
+
+        TextView threadTitleTextView = (TextView) findViewById(R.id.threadNameTextView);
+        TextView threadDescriptionTextView = (TextView) findViewById(R.id.threadDescriptionTextView);
+
+        threadTitleTextView.setText(threadTitle);
+        threadDescriptionTextView.setText(threadDescription);
     }
 }
