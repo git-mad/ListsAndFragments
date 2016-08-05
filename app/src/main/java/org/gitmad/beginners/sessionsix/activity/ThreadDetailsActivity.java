@@ -8,7 +8,7 @@ import org.gitmad.beginners.sessionsix.R;
 
 public class ThreadDetailsActivity extends AppCompatActivity {
 
-    public static String KEY_THREAD_INDEX = "thread index asdf";
+    public static String KEY_THREAD_INDEX = "thread index key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
