@@ -35,9 +35,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        startThreadDetailsActivity(position);
+    }
+
+    private void startThreadDetailsActivity(int threadIndex) {
         Intent intent = new Intent(this, ThreadDetailsActivity.class);
 
-        intent.putExtra(ThreadDetailsActivity.KEY_THREAD_INDEX, position);
+        intent.putExtra(ThreadDetailsActivity.KEY_THREAD_INDEX, threadIndex);
 
         startActivity(intent);
     }
