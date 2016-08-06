@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity implements OnThreadClickedLi
 
         if (savedInstanceState != null && savedInstanceState.containsKey(KEY_CURRENT_THREAD_INDEX)) {
 
-            restoreThreadIndex(savedInstanceState);
+            restoreThread(savedInstanceState);
         }
     }
 
-    private void restoreThreadIndex(Bundle savedInstanceState) {
+    private void restoreThread(Bundle savedInstanceState) {
         currentThreadIndex = savedInstanceState.getInt(KEY_CURRENT_THREAD_INDEX);
         displayThread();
     }

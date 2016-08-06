@@ -14,8 +14,6 @@ import org.gitmad.beginners.sessionsix.R;
 
 public class ChooseThreadFragment extends Fragment {
 
-    //TODO add alternative RecyclerView implementation to demo it.
-
     private ArrayAdapter<String> threadsArrayAdapter;
 
     private OnThreadClickedListener threadClickListener;
