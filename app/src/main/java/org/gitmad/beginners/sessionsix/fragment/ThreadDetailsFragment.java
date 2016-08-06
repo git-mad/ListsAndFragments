@@ -29,6 +29,12 @@ public class ThreadDetailsFragment extends Fragment {
     }
 
     public ThreadDetailsFragment() {
+        /*
+         * All fragments must have an empty public constructor so the
+         * Android OS can create them without having to pass the fragment's
+         * constructor any parameters. If you need to pass your fragment any
+         * arguments, see the usage of Fragment#setArguments(Bundle) above.
+         */
     }
 
 

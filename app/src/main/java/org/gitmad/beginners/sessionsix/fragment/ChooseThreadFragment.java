@@ -17,25 +17,13 @@ public class ChooseThreadFragment extends Fragment {
 
     private ListAdapter threadsArrayAdapter;
 
-    private OnThreadClickedListener threadClickListener;
-
     public ChooseThreadFragment() {
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof OnThreadClickedListener) {
-            threadClickListener = (OnThreadClickedListener) context;
-        } else {
-            throw new ClassCastException(context.toString() + " must implement OnThreadClickedListener");
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         /*
          * We need to inflate our views from R.layout.fragment_choosethread,
          * and set up our ListView and Adapter
@@ -50,13 +38,6 @@ public class ChooseThreadFragment extends Fragment {
         threadsArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, threadNames);
 
         threadsListView.setAdapter(threadsArrayAdapter);
-
-        threadsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                threadClickListener.onThreadClicked(position);
-            }
-        });
     }
 
     @Override
@@ -64,12 +45,5 @@ public class ChooseThreadFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         setRetainInstance(true);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-
-        threadClickListener = null;
     }
 }

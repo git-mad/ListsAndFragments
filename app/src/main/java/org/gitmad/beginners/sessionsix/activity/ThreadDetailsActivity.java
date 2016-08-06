@@ -1,6 +1,5 @@
 package org.gitmad.beginners.sessionsix.activity;
 
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -16,10 +15,7 @@ public class ThreadDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_details);
 
-        if (isNewOrientationLandscape()) {
-            finish();
-
-        } else if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
 
             int threadIndex = getIntent().getIntExtra(KEY_THREAD_INDEX, -1);
 
@@ -29,9 +25,5 @@ public class ThreadDetailsActivity extends AppCompatActivity {
                     .add(R.id.detailsFragmentFrame, detailsFragment)
                     .commit();
         }
-    }
-
-    private boolean isNewOrientationLandscape() {
-        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 }
