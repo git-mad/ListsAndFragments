@@ -15,29 +15,46 @@ import org.gitmad.beginners.sessionsix.R;
 
 public class ChooseThreadFragment extends Fragment {
 
-    private ListAdapter threadsArrayAdapter;
+    private OnThreadClickedListener threadClickedListener;
 
     public ChooseThreadFragment() {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnThreadClickedListener) {
+            threadClickedListener = (OnThreadClickedListener) context;
+        } else {
+            throw new ClassCastException(context.toString() + " must implement OnThreadClickedListener");
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_choosethread, container, false);
 
-        /*
-         * We need to inflate our views from R.layout.fragment_choosethread,
-         * and set up our ListView and Adapter
-         */
+        ListView threadsListView = (ListView) rootView.findViewById(R.id.threadListView);
+        setUpList(threadsListView);
 
-        return null;
+        return rootView;
     }
 
     private void setUpList(ListView threadsListView) {
         String [] threadNames = getResources().getStringArray(R.array.thread_names);
 
-        threadsArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, threadNames);
+        ListAdapter threadsArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, threadNames);
 
         threadsListView.setAdapter(threadsArrayAdapter);
+
+        threadsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                threadClickedListener.onThreadClicked(position);
+            }
+        });
     }
 
     @Override

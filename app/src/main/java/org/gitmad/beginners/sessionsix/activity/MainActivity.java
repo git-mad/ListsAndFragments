@@ -5,13 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import org.gitmad.beginners.sessionsix.R;
+import org.gitmad.beginners.sessionsix.fragment.OnThreadClickedListener;
 
-public class MainActivity extends AppCompatActivity {
-
-    /*
-     * Make MainActivity OnThreadClickedListener so ChooseThreadFragment
-     * can communicate with it.
-     */
+public class MainActivity extends AppCompatActivity implements OnThreadClickedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +21,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ThreadDetailsActivity.KEY_THREAD_INDEX, threadIndex);
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onThreadClicked(int threadIndex) {
+        startThreadDetailsActivity(threadIndex);
     }
 }
