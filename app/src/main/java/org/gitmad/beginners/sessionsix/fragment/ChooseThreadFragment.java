@@ -8,15 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import org.gitmad.beginners.sessionsix.R;
 
 public class ChooseThreadFragment extends Fragment {
 
-    //TODO add alternative RecyclerView implementation to demo it.
-
-    private ArrayAdapter<String> threadsArrayAdapter;
+    private ListAdapter threadsArrayAdapter;
 
     private OnThreadClickedListener threadClickListener;
 
@@ -35,21 +34,21 @@ public class ChooseThreadFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        threadsArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1);
-
-        String [] threadNames = getResources().getStringArray(R.array.thread_names);
-        threadsArrayAdapter.addAll(threadNames);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_choosethread, container, false);
+        /*
+         * We need to inflate our views from R.layout.fragment_choosethread,
+         * and set up our ListView and Adapter
+         */
 
-        ListView threadsListView = (ListView) rootView.findViewById(R.id.threadListView);
+        return null;
+    }
+
+    private void setUpList(ListView threadsListView) {
+        String [] threadNames = getResources().getStringArray(R.array.thread_names);
+
+        threadsArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, threadNames);
+
         threadsListView.setAdapter(threadsArrayAdapter);
 
         threadsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -58,8 +57,6 @@ public class ChooseThreadFragment extends Fragment {
                 threadClickListener.onThreadClicked(position);
             }
         });
-
-        return rootView;
     }
 
     @Override
