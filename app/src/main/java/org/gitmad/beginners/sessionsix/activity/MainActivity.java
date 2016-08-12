@@ -42,19 +42,12 @@ public class MainActivity extends AppCompatActivity implements OnThreadClickedLi
     }
 
     private void displayThread() {
-        if (orientationIsLandscape()) {
-            useFragmentToDisplayThread(currentThreadIndex);
-
-        } else {
-            useNewActivityToDisplayThread(currentThreadIndex);
-        }
-    }
-
-    private void useNewActivityToDisplayThread(int threadIndex) {
-        Intent intent = new Intent(this, ThreadDetailsActivity.class);
-        intent.putExtra(ThreadDetailsActivity.KEY_THREAD_INDEX, threadIndex);
-
-        startActivity(intent);
+        /*
+         * If the current orientation is horizontal, the ThreadDetailsFragment is
+         * being displayed alongside the list, so we should display the details there.
+         * Otherwise, we should display the details in the ThreadDetailsActivity, because
+         * there isn't enough room on screen.
+         */
     }
 
     private void useFragmentToDisplayThread(int threadIndex) {
@@ -62,6 +55,13 @@ public class MainActivity extends AppCompatActivity implements OnThreadClickedLi
                 .findFragmentById(R.id.detailsFragment);
 
         detailsFragment.setThread(threadIndex);
+    }
+
+    private void startThreadDetailsActivity(int threadIndex) {
+        Intent intent = new Intent(this, ThreadDetailsActivity.class);
+        intent.putExtra(ThreadDetailsActivity.KEY_THREAD_INDEX, threadIndex);
+
+        startActivity(intent);
     }
 
     private boolean orientationIsLandscape() {
